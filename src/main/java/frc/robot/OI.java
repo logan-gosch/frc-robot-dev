@@ -10,6 +10,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import org.usfirst.frc.robot.commands.ShiftDrive;
 import frc.robot.commands.ShooterDown;
 import frc.robot.commands.ShooterUp;
 
@@ -19,6 +20,14 @@ import frc.robot.commands.ShooterUp;
  */
 public class OI {
 	public Joystick driverController = new Joystick(RobotMap.OI_DRIVER_CONTROLLER);
+	public static Joystick driveStick1 = new Joystick(0);
+	public static Joystick driveStick2 = new Joystick(1);
+	public static Joystick controlStick = new Joystick(2);
+	
+	Button driveShiftUp = new JoystickButton(driveStick1, 1);
+	Button driveShiftDown = new JoystickButton(driveStick1, 2);
+
+
 
 	Button D1 = new JoystickButton(driverController, 1);
 	Button D2 = new JoystickButton(driverController, 2);
@@ -34,6 +43,8 @@ public class OI {
 	public OI() {
 		D1.whenPressed(new ShooterUp());
 		D2.whenPressed(new ShooterDown());
+
+		driveShiftUp.whenPressed(new ShiftDrive(0));
 	}
 
 	//// CREATING BUTTONS

@@ -48,6 +48,12 @@ public class Robot extends TimedRobot {
 		m_chooser.addDefault("Default Auto", new ExampleCommand());
 		// chooser.addObject("My Auto", new MyAutoCommand());
 		SmartDashboard.putData("Auto mode", m_chooser);
+		frontCamera = CameraServer.getInstance().startAutomaticCapture(0);
+
+		frontCamera.setResolution(240, 200);
+		frontCamera.setFPS(30);
+
+		cameraStream = CameraServer.getInstance().getServer();
 	}
 
 	/**
