@@ -6,44 +6,15 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-import org.usfirst.frc.robot.commands.ShiftDrive;
-import frc.robot.commands.ShooterDown;
-import frc.robot.commands.ShooterUp;
-
+import frc.robot.commands.SolenoidShift;
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-  public Joystick driverController = new Joystick(RobotMap.OI_DRIVER_CONTROLLER);
-	public static Joystick driveStick1 = new Joystick(0);
-	public static Joystick driveStick2 = new Joystick(1);
-	public static Joystick controlStick = new Joystick(2);
-	
-	Button driveShiftUp = new JoystickButton(driveStick1, 1);
-	Button driveShiftDown = new JoystickButton(driveStick1, 2);
-
-	Button D1 = new JoystickButton(driverController, 1);
-	Button D2 = new JoystickButton(driverController, 2);
-	Button D3 = new JoystickButton(driverController, 3);
-	Button D4 = new JoystickButton(driverController, 4);
-	Button D5 = new JoystickButton(driverController, 5);
-	Button D6 = new JoystickButton(driverController, 6);
-	Button D7 = new JoystickButton(driverController, 7);
-	Button D8 = new JoystickButton(driverController, 8);
-	Button D9 = new JoystickButton(driverController, 9);
-	Button D10 = new JoystickButton(driverController, 10);
-
-	public OI() {
-		D1.whenPressed(new ShooterUp());
-		D2.whenPressed(new ShooterDown());
-
-		driveShiftUp.whenPressed(new ShiftDrive(0));
-	}
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
   //// joystick.
@@ -71,4 +42,16 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
+  public static Joystick driveStick = new Joystick(0);
+	public static Joystick driveStickTwo = new Joystick(1);
+  public static Joystick controlStick = new Joystick(2);
+  // Shifts Drive Modes
+	Button driveShiftUp = new JoystickButton(driveStick, 1);
+  Button driveShiftDown = new JoystickButton(driveStick, 2);
+
+  public OI() {
+		//baby seal mechanism
+		driveShiftDown.whenPressed(new SolenoidShift(0));
+    driveShiftUp.whenPressed(new SolenoidShift(1));
+  }
 }
